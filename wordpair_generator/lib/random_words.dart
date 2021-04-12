@@ -8,6 +8,7 @@ class RandomWords extends StatefulWidget {
 
 class RandomWordsState extends State<RandomWords> {
   final _randomWordPairs = <WordPair>[];
+  final _savedWordPairs = Set<WordPair>();
   
   Widget _buildList() {
     return ListView.builder(
@@ -27,8 +28,15 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair) {
+    final alreadySaved = _savedWordPairs.contains(pair);
+
     return ListTile(
-      title: Text(pair.asPascalCase, style: TextStyle(fontSize: 18)));
+      title: Text(pair.asPascalCase, 
+        style: TextStyle(fontSize: 18)),
+      trailing: Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border, 
+        color: alreadySaved ? Colors.red : null),
+        );
   }
   
   Widget build(BuildContext context) {
