@@ -14,6 +14,8 @@ export default function App() {
       setCourseGoals(currentGoals => [
         ...currentGoals, 
         { id: Math.random().toString(), value: goalTitle}]);
+        
+        setIsAddMode(false);
   };
 
   const removeGoalHandler = goalID => {
